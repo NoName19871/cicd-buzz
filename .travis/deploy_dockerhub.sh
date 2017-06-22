@@ -6,4 +6,5 @@ else
     TAG="$TRAVIS_BRANCH"
 fi
 docker build -f Dockerfile -t $TRAVIS_REPO_SLUG:$TAG .
-docker push zeroday343/cicd-buzz:latest
+docker tag noname19871 zeroday343/cicd-buzz
+docker push noname19871/cicd-buzz:latest
