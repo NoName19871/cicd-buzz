@@ -1,3 +1,4 @@
+
 #!/bin/sh
 docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
 if [ "$TRAVIS_BRANCH" = "master" ]; then
@@ -6,5 +7,4 @@ else
     TAG="$TRAVIS_BRANCH"
 fi
 docker build -f Dockerfile -t $TRAVIS_REPO_SLUG:$TAG .
-docker tag zeroday343 noname19871/cicd-buzz
-docker push zeroday343/cicd-buzz:latest
+docker push $TRAVIS_REPO_SLUG
