@@ -10,7 +10,7 @@ signal.signal(signal.SIGINT, lambda s, f: os._exit(0))
 @app.route("/")
 def generate_buzz():
     page = '<html><body><h1>'
-    page += generator.generate_buzz(random.randrange(0, generator.quotes_count(os.path.abspath('buzz/quotes')))))
+    page += generator.generate_buzz(3)
     page += '</h1></body></html>'
     return page
 
