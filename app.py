@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 import os
 import signal
 import random
-from flask import Flask
+from flask import Flask, render_template
 from buzz import generator
 
 app = Flask(__name__)
@@ -10,10 +11,8 @@ signal.signal(signal.SIGINT, lambda s, f: os._exit(0))
 
 @app.route("/")
 def generate_buzz():
-    page = '<html><body><h1>'
-    page += generator.generate_buzz(random.randrange(0, generator.quotes_count()))
-    page += '</h1></body></html>'
-    return page
+    buzz = generator.generate_buzz(random.randrange(0, generator.quotes_count()))
+    return render_template('index.html', buzz=unicode(buzz, 'utf-8'))
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=os.getenv('PORT')) # port 5000 is the default
